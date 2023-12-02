@@ -1,6 +1,7 @@
 package com.github.vltir.advent_of_code.day1;
 
 import com.github.vltir.advent_of_code.Day;
+import com.github.vltir.advent_of_code.InputReader;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +15,7 @@ public class Day1 implements Day {
     @Override
     public String  run(boolean stage2) {
         fillLiterals(stage2);
-        List<String> inputList = readInput();
+        List<String> inputList = InputReader.readInput("./src/main/java/com/github/vltir/advent_of_code/day1/input.txt");
         int counter =0;
         for (String s : inputList) {
             counter+=findNumber(s);
@@ -68,14 +69,5 @@ public class Day1 implements Day {
         literals.put("seven",7);
         literals.put("eight",8);
         literals.put("nine",9);
-    }
-
-    private static List<String> readInput(){
-        try {
-            return Files.readAllLines(Path.of("./src/main/java/com/github/vltir/advent_of_code/day1/input.txt"));
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
