@@ -25,7 +25,7 @@ public class Day2 implements Day {
             }
             idCounter+=game.id;
         }
-        if (stage2==false)return idCounter+"";
+        if (!stage2)return idCounter+"";
 
         List<Integer>powerList= gameList.stream().map(game->game.getRed()*game.getGreen()*game.getBlue()).toList();
         int powerCount =0;

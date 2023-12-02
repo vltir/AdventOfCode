@@ -9,7 +9,7 @@ public class Game {
     private int green=0;
     private int blue=0;
 
-    private List<Round> rounds = new ArrayList<>();
+    private final List<Round> rounds = new ArrayList<>();
 
     Game(String inputString){
         id =Integer.parseInt(inputString.split(": ")[0].split(" ")[1]);
@@ -23,16 +23,10 @@ public class Game {
             for (String color : colorAr) {
                 String colorType = color.split(" ")[1];
                 int amount =Integer.parseInt(color.split(" ")[0]);
-                switch (colorType){
-                    case "red":
-                        red=amount;
-                        break;
-                    case "green":
-                        green=amount;
-                        break;
-                    case "blue":
-                        blue=amount;
-                        break;
+                switch (colorType) {
+                    case "red" -> red = amount;
+                    case "green" -> green = amount;
+                    case "blue" -> blue = amount;
                 }
             }
             this.rounds.add(new Round(red,green,blue));
@@ -42,31 +36,13 @@ public class Game {
     }
     private void setLargestOfEach(){
         for (Round round : rounds) {
-            red = Math.max(red,round.getRed());
-            green = Math.max(green,round.getGreen());
-            blue = Math.max(blue,round.getBlue());
+            red = Math.max(red,round.red());
+            green = Math.max(green,round.green());
+            blue = Math.max(blue,round.blue());
         }
     }
 
-    private class Round{
-        private int red,green,blue;
-        private Round(int red, int green, int blue){
-            this.red=red;
-            this.green=green;
-            this.blue=blue;
-        }
-
-        public int getRed() {
-            return red;
-        }
-
-        public int getGreen() {
-            return green;
-        }
-
-        public int getBlue() {
-            return blue;
-        }
+    private record Round(int red, int green, int blue) {
     }
 
     public int getRed() {
