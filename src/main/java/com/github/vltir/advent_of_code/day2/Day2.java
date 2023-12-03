@@ -9,10 +9,10 @@ import java.util.List;
 public class Day2 implements Day {
     @Override
     public String run(boolean stage2) {
-        int red =12;
-        int green =13;
-        int blue =14;
-        int idCounter=0;
+        int red = 12;
+        int green = 13;
+        int blue = 14;
+        int idCounter = 0;
         List<String> inputList = InputReader.readInput("./src/main/java/com/github/vltir/advent_of_code/day2/input.txt");
         List<Game> gameList = new ArrayList<>();
         for (String inputLine : inputList) {
@@ -20,18 +20,18 @@ public class Day2 implements Day {
         }
 
         for (Game game : gameList) {
-            if(game.getRed()>red||game.getGreen()>green||game.getBlue()>blue){
+            if (game.getRed() > red || game.getGreen() > green || game.getBlue() > blue) {
                 continue;
             }
-            idCounter+=game.id;
+            idCounter += game.id;
         }
-        if (!stage2)return idCounter+"";
+        if (!stage2) return idCounter + "";
 
-        List<Integer>powerList= gameList.stream().map(game->game.getRed()*game.getGreen()*game.getBlue()).toList();
-        int powerCount =0;
+        List<Integer> powerList = gameList.stream().map(game -> game.getRed() * game.getGreen() * game.getBlue()).toList();
+        int powerCount = 0;
         for (Integer power : powerList) {
-            powerCount+=power;
+            powerCount += power;
         }
-        return powerCount+"";
+        return powerCount + "";
     }
 }
