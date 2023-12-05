@@ -43,18 +43,26 @@ public class Day5 implements Day {
             return sortedLocations.get(0) + "";
         }
         List<Range> seeds = parseSeedRanges(inputList.get(0));
-        List<Range> soils = mapRange(MappingName.SEED_TO_SOIL_MAP,seeds);
-        List<Range> fertilizer = mapRange(MappingName.SEED_TO_SOIL_MAP,soils);
-        List<Range> water = mapRange(MappingName.SEED_TO_SOIL_MAP,fertilizer);
-        List<Range> light = mapRange(MappingName.SEED_TO_SOIL_MAP,water);
-        List<Range> temperature = mapRange(MappingName.SEED_TO_SOIL_MAP,light);
-        List<Range> humidity = mapRange(MappingName.SEED_TO_SOIL_MAP,temperature);
-        List<Range> location = mapRange(MappingName.SEED_TO_SOIL_MAP,humidity);
-        List<Long> upperBoundLocations = location.stream().map(r->r.upperBound).toList();
+        System.out.println(seeds.size());
+        List<Range> soils = mapRange(MappingName.SEED_TO_SOIL_MAP, seeds);
+        System.out.println(soils.size());
+        List<Range> fertilizer = mapRange(MappingName.SOIL_TO_FERTILIZER_MAP, soils);
+        System.out.println(fertilizer.size());
+        List<Range> water = mapRange(MappingName.FERTILIZER_TO_WATER_MAP, fertilizer);
+        System.out.println(water.size());
+        List<Range> light = mapRange(MappingName.WATER_TO_LIGHT_MAP, water);
+        System.out.println(light.size());
+        List<Range> temperature = mapRange(MappingName.LIGHT_TO_TEMPERATURE_MAP, light);
+        System.out.println(temperature.size());
+        List<Range> humidity = mapRange(MappingName.TEMPERATURE_TO_HUMIDITY_MAP, temperature);
+        System.out.println(humidity.size());
+        List<Range> location = mapRange(MappingName.HUMIDITY_TO_LOCATION_MAP, humidity);
+        System.out.println(location.size());
+        List<Long> upperBoundLocations = location.stream().map(r -> r.upperBound).toList();
         List<Long> sortedUpperBoundLocations = new ArrayList<>(upperBoundLocations);
         Collections.sort(sortedUpperBoundLocations);
 
-        return sortedUpperBoundLocations.get(0)+"";
+        return sortedUpperBoundLocations.get(0) + "";
     }
 
     private List<Range> parseSeedRanges(String inputLine) {
@@ -66,24 +74,32 @@ public class Day5 implements Day {
         return seedRanges;
     }
 
-    private List<Range> mapRange(MappingName name, List<Range> ranges){
+    private List<Range> mapRange(MappingName name, List<Range> ranges) {
         List<Mapping> mappingList = mappingLists.get(name.index);
         List<Range> newRanges = new ArrayList<>();
-        for (Mapping mapping : mappingList) {
-            for (Range range : ranges) {
-                if(range.upperBound<mapping.sourceStart){
+        for (Range range : ranges) {
+            boolean anyMappingTriggered = false;
+            for (Mapping mapping : mappingList) {
+                if (range.upperBound < mapping.sourceStart) {
                     continue;
-                } else if (range.lowerBound>mapping.sourceStart+mapping.range-1) {
+                } else if (range.lowerBound > mapping.sourceStart + mapping.range - 1) {
                     continue;
-                } else if (range.lowerBound>=mapping.sourceStart&&range.upperBound<=mapping.sourceStart+mapping.range-1) {
-                    newRanges.add(new Range(range.lowerBound-mapping.sourceStart+mapping.destinationStart,range.upperBound-mapping.sourceStart+mapping.destinationStart));
-                } else if (range.lowerBound<mapping.sourceStart&&range.upperBound>= mapping.sourceStart&&range.upperBound<=mapping.sourceStart+mapping.range-1) {
-                    newRanges.add(new Range(mapping.destinationStart,mapping.destinationStart+range.upperBound-mapping.sourceStart));
-                } else if (range.upperBound>mapping.sourceStart+mapping.range-1&&range.lowerBound>=mapping.sourceStart&&range.lowerBound<=mapping.sourceStart+mapping.range-1) {
-                    newRanges.add(new Range(mapping.destinationStart+range.lowerBound-mapping.sourceStart(),mapping.destinationStart+mapping.range-1));
-                } else if (range.lowerBound<mapping.sourceStart&&range.upperBound>mapping.sourceStart+mapping.range-1) {
-                    newRanges.add(new Range(mapping.destinationStart,mapping.destinationStart+mapping.range-1));
+                } else if (range.lowerBound >= mapping.sourceStart && range.upperBound <= mapping.sourceStart + mapping.range - 1) {
+                    newRanges.add(new Range(range.lowerBound - mapping.sourceStart + mapping.destinationStart, range.upperBound - mapping.sourceStart + mapping.destinationStart));
+                    anyMappingTriggered=true;
+                } else if (range.lowerBound < mapping.sourceStart && range.upperBound >= mapping.sourceStart && range.upperBound <= mapping.sourceStart + mapping.range - 1) {
+                    newRanges.add(new Range(mapping.destinationStart, mapping.destinationStart + range.upperBound - mapping.sourceStart));
+                    anyMappingTriggered=true;
+                } else if (range.upperBound > mapping.sourceStart + mapping.range - 1 && range.lowerBound >= mapping.sourceStart && range.lowerBound <= mapping.sourceStart + mapping.range - 1) {
+                    newRanges.add(new Range(mapping.destinationStart + range.lowerBound - mapping.sourceStart(), mapping.destinationStart + mapping.range - 1));
+                    anyMappingTriggered=true;
+                } else if (range.lowerBound < mapping.sourceStart && range.upperBound > mapping.sourceStart + mapping.range - 1) {
+                    newRanges.add(new Range(mapping.destinationStart, mapping.destinationStart + mapping.range - 1));
+                    anyMappingTriggered=true;
                 }
+            }
+            if (!anyMappingTriggered){
+                newRanges.add(range);
             }
         }
         return newRanges;
