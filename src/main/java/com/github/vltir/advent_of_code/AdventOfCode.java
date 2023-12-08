@@ -6,13 +6,14 @@ import com.github.vltir.advent_of_code.day3.Day3;
 import com.github.vltir.advent_of_code.day4.Day4;
 import com.github.vltir.advent_of_code.day5.Day5;
 import com.github.vltir.advent_of_code.day6.Day6;
+import com.github.vltir.advent_of_code.day7.Day7;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class AdventOfCode {
     public static void main(String[] args) {
-        Day day = new Day6();
+        Day day = new Day7();
         long initialTime = System.nanoTime();
         String answer1 = day.run(false);
         long stage1Time = System.nanoTime();
