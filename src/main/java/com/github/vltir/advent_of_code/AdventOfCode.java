@@ -8,17 +8,18 @@ import com.github.vltir.advent_of_code.day5.Day5;
 import com.github.vltir.advent_of_code.day6.Day6;
 import com.github.vltir.advent_of_code.day7.Day7;
 import com.github.vltir.advent_of_code.day7.Day7Earth;
+import com.github.vltir.advent_of_code.day8.Day8;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class AdventOfCode {
     public static void main(String[] args) {
-        Day day = new Day7();
+        Day day = new Day8();
         long initialTime = System.nanoTime();
         String answer1 = day.run(false);
         long stage1Time = System.nanoTime();
-        String answer2 = day.run(true);
+        String answer2 = "";//day.run(true);
         long stage2Time = System.nanoTime();
         System.out.println("Stage 1: " + answer1 + " in " + (stage1Time - initialTime) / 1000000.0 + " milliseconds" + "\nStage 2: " + answer2 + " in " + (stage2Time - stage1Time) / 1000000.0 + " milliseconds");
     }
