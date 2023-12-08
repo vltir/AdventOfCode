@@ -94,6 +94,7 @@ public class Day7 implements Day {
             }
             if (stage2) {
                 int jacks = occurrence[0];
+                occurrence[0]=0;
                 int maxIndex = 1;
                 for (int i = 1; i < occurrence.length; i++) {
                     if (occurrence[i] > occurrence[maxIndex]) {

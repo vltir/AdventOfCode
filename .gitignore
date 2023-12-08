@@ -1,4 +1,6 @@
 input.txt
+Day7Earth.java
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

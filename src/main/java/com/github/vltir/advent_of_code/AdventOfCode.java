@@ -7,6 +7,7 @@ import com.github.vltir.advent_of_code.day4.Day4;
 import com.github.vltir.advent_of_code.day5.Day5;
 import com.github.vltir.advent_of_code.day6.Day6;
 import com.github.vltir.advent_of_code.day7.Day7;
+import com.github.vltir.advent_of_code.day7.Day7Earth;
 
 import java.util.HashMap;
 import java.util.Map;
