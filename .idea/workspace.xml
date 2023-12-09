@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e0277c3-b99e-43c9-8464-66e4e72b2a4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/vltir/advent_of_code/util/MathUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/vltir/advent_of_code/day9/Day9.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/vltir/advent_of_code/AdventOfCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/vltir/advent_of_code/AdventOfCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/vltir/advent_of_code/day8/Day8.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/vltir/advent_of_code/day8/Day8.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
