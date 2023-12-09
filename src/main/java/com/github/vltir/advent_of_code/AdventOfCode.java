@@ -19,7 +19,7 @@ public class AdventOfCode {
         long initialTime = System.nanoTime();
         String answer1 = day.run(false);
         long stage1Time = System.nanoTime();
-        String answer2 = "";//day.run(true);
+        String answer2 = day.run(true);
         long stage2Time = System.nanoTime();
         System.out.println("Stage 1: " + answer1 + " in " + (stage1Time - initialTime) / 1000000.0 + " milliseconds" + "\nStage 2: " + answer2 + " in " + (stage2Time - stage1Time) / 1000000.0 + " milliseconds");
     }
